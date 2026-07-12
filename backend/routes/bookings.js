@@ -33,6 +33,10 @@ router.post("/", (req, res) => {
     return res.status(400).json({ error: "End time must be after start time" });
   }
   const db = readDB();
+  const asset = db.assets.find((a) => a.id === Number(assetId));
+  if (!asset) return res.status(404).json({ error: "Asset not found" });
+  if (!asset.bookable) return res.status(400).json({ error: "This asset cannot be booked" });
+
   const conflict = db.bookings.find(
     (b) => b.assetId === Number(assetId) && b.date === date && b.status !== "Cancelled" && overlaps(startTime, endTime, b.startTime, b.endTime)
   );

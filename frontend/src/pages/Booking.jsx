@@ -43,6 +43,11 @@ export default function Booking() {
     setModal(true);
   }
 
+  async function cancelBooking(id) {
+    await api.patch(`/bookings/${id}/cancel`);
+    load();
+  }
+
   async function submitBooking(e) {
     e.preventDefault();
     setError("");
@@ -58,6 +63,8 @@ export default function Booking() {
     if (!bookings.length) return null;
     return resource?.name;
   }, [bookings, resource]);
+
+  const canManageBooking = ["Admin", "AssetManager", "DeptHead"].includes(user?.role);
 
   return (
     <div>
@@ -82,7 +89,12 @@ export default function Booking() {
                     <div className="booking-slot" onClick={() => slotBookings.length === 0 && openBookingModal(h)}>
                       {slotBookings.length === 0 ? null : slotBookings.map((b) => (
                         <div key={b.id} className="booked">
-                          Booked — {b.bookedBy} — {b.startTime} to {b.endTime}
+                          <div>Booked — {b.bookedBy} — {b.startTime} to {b.endTime}</div>
+                          {canManageBooking && (
+                            <button className="btn btn-danger btn-sm" style={{ marginTop: 6 }} onClick={(e) => { e.stopPropagation(); cancelBooking(b.id); }}>
+                              Cancel
+                            </button>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -97,8 +109,9 @@ export default function Booking() {
           <div className="card">
             <div className="section-title mt-0">Quick Stats</div>
             <div style={{ fontSize: 13, marginBottom: 10 }}><strong>Selected:</strong> {resource?.name || "—"}</div>
-            <div style={{ fontSize: 13, marginBottom: 10 }}><strong>Bookings today:</strong> {bookings.filter(b => b.status !== "Cancelled").length}</div>
-            <div style={{ fontSize: 13 }}><strong>Available now:</strong> {resources.length} resources</div>
+            <div style={{ fontSize: 13, marginBottom: 10 }}><strong>Bookings today:</strong> {bookings.filter((b) => b.status !== "Cancelled").length}</div>
+            <div style={{ fontSize: 13, marginBottom: 10 }}><strong>Available now:</strong> {resources.length} resources</div>
+            <div style={{ fontSize: 13 }}><strong>Booking focus:</strong> {mostBooked || "No active bookings"}</div>
           </div>
         </div>
       </div>

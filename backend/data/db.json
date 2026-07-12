@@ -6,11 +6,11 @@
     "asset": 4,
     "allocation": 2,
     "transfer": 1,
-    "booking": 2,
+    "booking": 5,
     "maintenance": 3,
     "audit": 1,
-    "notification": 5,
-    "log": 5
+    "notification": 8,
+    "log": 9
   },
   "settings": {
     "notifications": {
@@ -370,6 +370,42 @@
       "endTime": "10:00",
       "purpose": "Procurement sync",
       "status": "Upcoming"
+    },
+    {
+      "id": 3,
+      "assetId": 2,
+      "resourceName": "Projector",
+      "bookedBy": "Admin User",
+      "department": "Engineering",
+      "date": "2026-07-12",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "purpose": "QA verification",
+      "status": "Cancelled"
+    },
+    {
+      "id": 4,
+      "assetId": 4,
+      "resourceName": "Conference Room B2",
+      "bookedBy": "Admin User",
+      "department": "Engineering",
+      "date": "2026-07-13",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "purpose": "Back-to-back slot",
+      "status": "Upcoming"
+    },
+    {
+      "id": 5,
+      "assetId": 1,
+      "resourceName": "Dell Laptop",
+      "bookedBy": "Admin User",
+      "department": "Engineering",
+      "date": "2026-07-13",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "purpose": "Non-bookable test",
+      "status": "Upcoming"
     }
   ],
   "maintenanceRequests": [
@@ -398,6 +434,27 @@
   ],
   "auditCycles": [],
   "notifications": [
+    {
+      "id": 8,
+      "message": "Booking confirmed: Dell Laptop 10:00-11:00",
+      "type": "Booking",
+      "read": false,
+      "createdAt": "2026-07-12T07:47:45.052Z"
+    },
+    {
+      "id": 7,
+      "message": "Booking confirmed: Conference Room B2 10:00-11:00",
+      "type": "Booking",
+      "read": false,
+      "createdAt": "2026-07-12T07:47:44.992Z"
+    },
+    {
+      "id": 6,
+      "message": "Booking confirmed: Projector 11:00-12:00",
+      "type": "Booking",
+      "read": false,
+      "createdAt": "2026-07-12T07:40:50.987Z"
+    },
     {
       "id": 5,
       "message": "Maintenance request AF-0062 resolved",
@@ -435,6 +492,30 @@
     }
   ],
   "activityLogs": [
+    {
+      "id": 9,
+      "message": "Dell Laptop booking confirmed 10:00 to 11:00",
+      "type": "Booking",
+      "createdAt": "2026-07-12T07:47:45.052Z"
+    },
+    {
+      "id": 8,
+      "message": "Conference Room B2 booking confirmed 10:00 to 11:00",
+      "type": "Booking",
+      "createdAt": "2026-07-12T07:47:44.992Z"
+    },
+    {
+      "id": 7,
+      "message": "Booking cancelled: Projector 11:00-12:00",
+      "type": "Booking",
+      "createdAt": "2026-07-12T07:41:06.340Z"
+    },
+    {
+      "id": 6,
+      "message": "Projector booking confirmed 11:00 to 12:00",
+      "type": "Booking",
+      "createdAt": "2026-07-12T07:40:50.987Z"
+    },
     {
       "id": 5,
       "message": "Maintenance resolved for AF-0062 - status set to Available",

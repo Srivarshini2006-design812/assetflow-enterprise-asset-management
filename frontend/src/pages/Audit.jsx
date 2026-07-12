@@ -123,6 +123,7 @@ export default function Audit() {
                 {departments.map((d) => <option key={d.id} value={d.name}>{d.name}</option>)}
               </select>
             </div>
+            <div className="field"><label>Location</label><input onChange={(e) => setForm({ ...form, location: e.target.value })} /></div>
             <div className="field-row">
               <div className="field"><label>Start Date</label><input type="date" onChange={(e) => setForm({ ...form, dateRangeStart: e.target.value })} /></div>
               <div className="field"><label>End Date</label><input type="date" onChange={(e) => setForm({ ...form, dateRangeEnd: e.target.value })} /></div>

@@ -9,6 +9,7 @@ export default function Assets() {
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("");
   const [department, setDepartment] = useState("");
+  const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState({});
@@ -21,6 +22,7 @@ export default function Assets() {
     if (q) params.set("q", q);
     if (category) params.set("category", category);
     if (department) params.set("department", department);
+    if (location) params.set("location", location);
     if (status) params.set("status", status);
     api.get(`/assets?${params.toString()}`).then(setAssets);
   }
@@ -30,7 +32,7 @@ export default function Assets() {
     api.get("/org/departments").then(setDepartments);
   }, []);
 
-  useEffect(load, [q, category, department, status]);
+  useEffect(load, [q, category, department, location, status]);
 
   async function submitAsset(e) {
     e.preventDefault();
@@ -69,6 +71,7 @@ export default function Assets() {
             <option value="">All Departments</option>
             {departments.map((d) => <option key={d.id} value={d.name}>{d.name}</option>)}
           </select>
+          <input placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} style={{ minWidth: 150 }} />
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="">All Statuses</option>
             {["Available", "Allocated", "Reserved", "Under Maintenance", "Lost", "Retired", "Disposed"].map((s) => <option key={s}>{s}</option>)}
@@ -125,6 +128,13 @@ export default function Assets() {
                   <option value="">—</option>
                   {departments.map((d) => <option key={d.id} value={d.name}>{d.name}</option>)}
                 </select>
+              </div>
+            </div>
+            <div className="field-row">
+              <div className="field"><label>Purchase Cost</label><input type="number" value={form.acquisitionCost || 0} onChange={(e) => setForm({ ...form, acquisitionCost: Number(e.target.value) })} /></div>
+              <div className="field" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <label style={{ marginTop: 22 }}>Bookable Resource</label>
+                <input type="checkbox" checked={!!form.bookable} onChange={(e) => setForm({ ...form, bookable: e.target.checked })} />
               </div>
             </div>
             <div className="field-row">

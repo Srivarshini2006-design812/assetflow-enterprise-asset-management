@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 
+const DEMO_USERS = [
+  { label: "Admin", email: "admin@assetflow.com", password: "admin123" },
+  { label: "Asset Manager", email: "rohan@assetflow.com", password: "rohan123" },
+  { label: "Department Head", email: "sana@assetflow.com", password: "sana123" },
+  { label: "Employee", email: "priya@assetflow.com", password: "priya123" }
+];
+
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -55,6 +62,23 @@ export default function Login() {
             New here? Sign up creates an employee account — admin roles are assigned later.
             <div style={{ marginTop: 10 }}>
               <Link to="/signup" className="btn btn-outline" style={{ width: "100%", justifyContent: "center" }}>Create Account</Link>
+            </div>
+          </div>
+
+          <div className="demo-credentials">
+            <div className="section-title mt-0">Try a demo account</div>
+            <div className="demo-credential-grid">
+              {DEMO_USERS.map((user) => (
+                <button
+                  key={user.email}
+                  type="button"
+                  className="demo-credential"
+                  onClick={() => { setEmail(user.email); setPassword(user.password); }}
+                >
+                  <strong>{user.label}</strong>
+                  <span>{user.email}</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>

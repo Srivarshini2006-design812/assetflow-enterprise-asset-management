@@ -59,7 +59,10 @@ export default function Layout() {
 
       <div className="main-area">
         <header className="topbar">
-          <h1>{PAGE_TITLES[currentPath] || "AssetFlow"}</h1>
+          <div>
+            <h1>{PAGE_TITLES[currentPath] || "AssetFlow"}</h1>
+            <div className="topbar-subtitle">Workspace ready for asset, booking, and maintenance workflows</div>
+          </div>
           <div className="user-menu">
             <div>
               <div className="user-name" style={{ textAlign: "right" }}>{user?.name}</div>

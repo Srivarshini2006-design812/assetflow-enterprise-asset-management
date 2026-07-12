@@ -19,7 +19,9 @@ html, body, #root { height: 100%; }
 body {
   margin: 0;
   font-family: "Inter", -apple-system, sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(13, 110, 253, 0.08), transparent 20%),
+    linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
@@ -69,10 +71,12 @@ button { font-family: inherit; cursor: pointer; }
 
 .main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
 .topbar {
-  height: 64px; background: var(--card); border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+  min-height: 64px; background: rgba(255,255,255,0.92); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; padding: 14px 28px;
+  backdrop-filter: blur(10px);
 }
 .topbar h1 { font-size: 18px; font-weight: 700; margin: 0; }
+.topbar-subtitle { margin-top: 4px; color: var(--text-muted); font-size: 12.5px; }
 .avatar {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center;
@@ -181,12 +185,14 @@ label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); display: 
 /* ---------- Login page ---------- */
 .auth-page {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(160deg, var(--navy) 0%, #101724 100%);
+  background:
+    radial-gradient(circle at top left, rgba(0,180,216,0.22), transparent 18%),
+    linear-gradient(160deg, var(--navy) 0%, #101724 100%);
   padding: 20px;
 }
 .auth-card {
   background: #fff; width: 100%; max-width: 400px; border-radius: 16px; padding: 34px 32px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.36);
 }
 .auth-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
 .auth-logo .logo {
@@ -198,6 +204,15 @@ label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); display: 
 .auth-card h2 { margin: 0 0 4px; font-size: 20px; }
 .auth-card .sub { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
 .auth-footer { margin-top: 18px; text-align: center; font-size: 13px; color: var(--text-muted); }
+.demo-credentials { margin-top: 26px; }
+.demo-credential-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.demo-credential {
+  border: 1px solid var(--border); background: #f8fbff; border-radius: 10px; padding: 10px 12px;
+  text-align: left; display: flex; flex-direction: column; gap: 3px; color: var(--text);
+}
+.demo-credential:hover { border-color: var(--teal); background: #eff7ff; }
+.demo-credential strong { font-size: 12.5px; }
+.demo-credential span { font-size: 11.5px; color: var(--text-muted); }
 .auth-easter-egg { text-align: center; margin-top: 26px; font-size: 11px; color: rgba(255,255,255,0.35); }
 
 /* ---------- Kanban (Maintenance) ---------- */
